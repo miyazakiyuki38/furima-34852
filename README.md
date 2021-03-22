@@ -5,15 +5,14 @@
 | Column            | Type   | Options     |
 | --------          | ------ | ----------- |
 | nickname          | string | null false |
-| email             | string | null false |
-| password          | string | null false, unique: true|
+| email             | string | null false, unique: true |
+| encrypted_password  | string | null false |
 | family_name       | string | null false |
 | family_name_kana  | string | null false |
 | first_name        | string | null false |
-| birth_year        | string | null false |
-| birth_month       | string | null false |
-| birth_day         | string | null false |
-| number_phone      | integer| null false |
+| first_name_kana   | string | null false |
+| birth_day         | date   | null false |
+| phone_number      | integer| null false |
 | address           | integer| null false |
 
 ### Association
@@ -26,13 +25,13 @@
 | ------       | ---------- | ------------------------------ |
 | name         | string     | null false |
 | introduction | text       | null false |
-| category     | integer    | null false |
-| condition    | integer    | null false |
-| trading_status | integer    | null false |
+| category_id     | integer    | null false |
+| condition_id    | integer    | null false |
+| trading_status_id | integer    | null false |
 | price        | integer    | null false |
-| seller_addresses   | string     | null false |
-| order_date   | integer    | null false |
-| user_id      | references | foreign_key: true |
+| seller_addresses_id   | string     | null false |
+| order_date_id   | integer    | null false |
+| user         | references | foreign_key: true |
 
 
 ### Association
@@ -40,12 +39,13 @@ belongs_to :user
 has_one :order
 
 
+
 ## orders テーブル
 
 | Column            | Type   | Options     |
 | ------       | ---------- | ------------------------------ |
-| item_id      | references | foreign_key: true |
-| user_id      | references | foreign_key: true |
+| item         | references | foreign_key: true |
+| user         | references | foreign_key: true |
 
 ### Association
 belongs_to :user
@@ -55,11 +55,13 @@ has_one :address
 ## addresses テーブル
 | Column            | Type   | Options     |
 | ------       | ---------- | ------------------------------ |
-| post_number  | integer    | null false   |
-| prefectures  | string     | null false   |
-| city         | string     | null false   |
+| post_number  | string      | null false   |
+| prefectures_id  | integer  | null false   |
+| city          | string     | null false   |
 | street_number | integer    | null false   |
-| oder_id      | references | foreign_key: true |
+| oder          | references | foreign_key: true |
+| building_name | string     | null false   |
+| phone_number  | integer    | null false   |
 
 ### Association
 belongs_to :oder
