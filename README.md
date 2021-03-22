@@ -32,6 +32,7 @@
 | price        | integer    | null false |
 | seller_addresses   | string     | null false |
 | order_date   | integer    | null false |
+| user_id      | references | foreign_key: true |
 
 
 ### Association
@@ -43,8 +44,8 @@ has_one :order
 
 | Column            | Type   | Options     |
 | ------       | ---------- | ------------------------------ |
-| item_id      | references | null false   |
-| user_id      | references | null false   |
+| item_id      | references | foreign_key: true |
+| user_id      | references | foreign_key: true |
 
 ### Association
 belongs_to :user
@@ -54,11 +55,11 @@ has_one :address
 ## addresses テーブル
 | Column            | Type   | Options     |
 | ------       | ---------- | ------------------------------ |
-
 | post_number  | integer    | null false   |
 | prefectures  | string     | null false   |
 | city         | string     | null false   |
-|street number | integer    | null false   |
+| street_number | integer    | null false   |
+| oder_id      | references | foreign_key: true |
 
 ### Association
 belongs_to :oder
