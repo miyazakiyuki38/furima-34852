@@ -56,10 +56,10 @@ has_one :address
 | post_number  | string      | null false   |
 | prefecture_id  | integer  | null false   |
 | city          | string     | null false   |
-| street_number | integer    | null false   |
+| street_number | string    | null false   |
 | order          | references | foreign_key: true |
-| building_name | string     | null false   |
-| phone_number  | integer    | null false   |
+| building_name | string     |
+| phone_number  | string     | null false   |
 
 ### Association
 belongs_to :order
