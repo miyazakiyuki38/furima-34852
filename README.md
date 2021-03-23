@@ -12,12 +12,10 @@
 | first_name        | string | null false |
 | first_name_kana   | string | null false |
 | birth_day         | date   | null false |
-| phone_number      | integer| null false |
-| address           | integer| null false |
 
 ### Association
 - has_many :items
-- has_one :orders
+- has_many :orders
 
 # items テーブル
 
@@ -29,7 +27,7 @@
 | condition_id    | integer    | null false |
 | trading_status_id | integer    | null false |
 | price        | integer    | null false |
-| seller_addresses_id   | string     | null false |
+| prefecture_id   | integer | null false |
 | order_date_id   | integer    | null false |
 | user         | references | foreign_key: true |
 
@@ -56,12 +54,12 @@ has_one :address
 | Column            | Type   | Options     |
 | ------       | ---------- | ------------------------------ |
 | post_number  | string      | null false   |
-| prefectures_id  | integer  | null false   |
+| prefecture_id  | integer  | null false   |
 | city          | string     | null false   |
 | street_number | integer    | null false   |
-| oder          | references | foreign_key: true |
+| order          | references | foreign_key: true |
 | building_name | string     | null false   |
 | phone_number  | integer    | null false   |
 
 ### Association
-belongs_to :oder
+belongs_to :order
