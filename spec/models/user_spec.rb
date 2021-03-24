@@ -6,6 +6,14 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+     context '内容に問題ない場合' do
+      it '全て正常' do
+        expect(@user).to be_valid
+      end
+    end
+
+
+     context'内容に問題ある場合' do
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -31,7 +39,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'passwordが6文字以下であれば登録できない' do
-      @user.password = '00000'
+      @user.password = '11aaa'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Password is too short (minimum is 6 characters)'
     end
@@ -70,13 +78,13 @@ RSpec.describe User, type: :model do
     it 'first_nameは全角（漢字・ひらがな・カタカナ）でなければ登録できない' do
       @user.first_name = 'kana'
       @user.valid?
-      expect(@user.errors.full_messages).to include 'First name Full-width characters'
+      expect(@user.errors.full_messages).to include 'First name is invalid'
     end
 
     it 'family_nameは全角（漢字・ひらがな・カタカナ）でなければ登録できない' do
       @user.family_name = 'kana'
       @user.valid?
-      expect(@user.errors.full_messages).to include 'Family name Full-width characters'
+      expect(@user.errors.full_messages).to include 'Family name is invalid'
     end
 
     it 'first_name_kana（名字）が空だと登録できない' do
@@ -96,5 +104,18 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Birth day can't be blank"
     end
+
+    it 'first_nameが全角カタカナ以外では登録できない' do
+      @user.first_name_kana = 'あカ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "First name kana is invalid"
+    end
+
+    it 'family_name_kanaが全角カタカナ以外では登録できない' do
+      @user.family_name_kana = 'あカ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Family name kana is invalid"
+   end
   end
+ end
 end
