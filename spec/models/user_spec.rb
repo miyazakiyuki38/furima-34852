@@ -116,6 +116,31 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Family name kana is invalid"
    end
+
+   it 'passrordは英語のみでは登録できない' do
+    @user.password = 'abcdefg'
+    @user.valid?
+    expect(@user.errors.full_messages).to include "Password is invalid"
+   end
+    it 'passwordは数字のみでは登録できない' do
+    @user.password = "1111111"
+    @user.valid?
+    expect(@user.errors.full_messages).to include "Password is invalid"
+   end
+
+   it 'passwordは全角では登録できない' do
+    @user.password = "１２３４５６７"
+    @user.valid?
+    expect(@user.errors.full_messages).to include "Password is invalid"
+   end
+
+   it '重複したemailが存在する場合登録できない' do
+    @user.save
+    another_user = FactoryBot.build(:user)
+    another_user.email = @user.email
+    another_user.valid?
+    expect(another_user.errors.full_messages).to include('Email has already been taken')
+   end
   end
  end
 end
