@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!,except:[:index,:show]
 
   def index
-     @items = Item.order("crateed_at DESC")
+    #  @items = Item.order("crateed_at DESC")「一覧機能の時に外す」
   end
 
   def new
