@@ -1,6 +1,5 @@
 window.addEventListener('load', ()=>{
-  // console.log(200 - "aaa")
-  // console.log(200 + "aaa")
+
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;

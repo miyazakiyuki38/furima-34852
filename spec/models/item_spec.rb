@@ -26,33 +26,33 @@ RSpec.describe Item, type: :model do
   end
    
   it 'カテゴリーが選択されていなければ投稿できない' do
-    @item.category_id = '1'
+    @item.category_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include "Category is not a number"
+    expect(@item.errors.full_messages).to include "Category must be other than 1"
  end
 
   it '商品の状態が選択されていなければ投稿できない' do
-    @item.condition_id = '1'
+    @item.condition_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include "Condition is not a number"
+    expect(@item.errors.full_messages).to include "Condition must be other than 1"
   end
 
   it '配送料の負担が選択されていなければ投稿できない' do
-  @item.trading_status_id = '1'
+  @item.trading_status_id = 1
   @item.valid?
-  expect(@item.errors.full_messages).to include "Trading status is not a number"
+  expect(@item.errors.full_messages).to include "Trading status must be other than 1"
 end
 
-  it '発送元の地域が選択されていなければ投稿できない' do "Order date is not a number"
-    @item.prefecture_id = '0'
+  it '発送元の地域が選択されていなければ投稿できない' do 
+    @item.prefecture_id = 0
     @item.valid?
-    expect(@item.errors.full_messages).to include "Prefecture is not a number"
+    expect(@item.errors.full_messages).to include "Prefecture must be other than 0"
   end
 
   it '発送までの日数を選択されていなければ登録できない' do
-    @item.order_date_id = '1'
+    @item.order_date_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include "Order date is not a number"
+    expect(@item.errors.full_messages).to include "Order date must be other than 1"
   end
 
   it '価格が入力されていなければ登録できない' do
@@ -65,7 +65,6 @@ end
     @item.user = nil
     @item.valid?
     expect(@item.errors.full_messages).to include'User must exist'
-    @item
   end
 
   it '画像が選択されていなければ投稿できない' do
@@ -88,6 +87,18 @@ end
 
   it '価格は半角数字でなければ登録できない' do
     @item.price = '５００'
+    @item.valid?
+    expect(@item.errors.full_messages).to include "Price Half-width number"
+  end
+
+  it '価格は半角英数混合では登録できない' do
+    @item.price = 'a500'
+    @item.valid?
+    expect(@item.errors.full_messages).to include "Price Half-width number"
+  end
+
+  it '価格は半角英語だけでは登録できない' do
+    @item.price = 'aaaaa'
     @item.valid?
     expect(@item.errors.full_messages).to include "Price Half-width number"
   end
