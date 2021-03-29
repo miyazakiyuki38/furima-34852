@@ -20,6 +20,10 @@ def create
   end
 end
 
+ def show
+  @item = Item.find(params[:id])
+ end
+
 private
 
 def item_params
@@ -30,3 +34,4 @@ def item_params
 #   @item = Item.find(params[:id])
 #  end (差分があがってこなくなるため)
 end
+
