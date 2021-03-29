@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!,except:[:index,:show]
-  before_action :set_item, only: [:show,:edit,:update]
-  before_action :contributor_confirmation, only: [:edit, :update]
+  before_action :set_item, only: [:show,:edit,:update, :destroy]
+  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
 
 
@@ -24,21 +24,25 @@ def create
 end
 
  def show
-  # @item = Item.find(params[:id]後ほど使うかも)
  end
 
  def edit
-  # @item = Item.find(params[:id]後ほど使うかも)
  end
 
  def update
-  #  @item.update(item_params)「LGTM後削除」
+  @item = Item.find(params[:id])
    if @item.update(item_params)
     redirect_to item_path
    else
     render :edit
    end
 end
+
+ def destroy
+  if @item.destroy
+    redirect_to root_path
+  end
+ end
 
 private
 
