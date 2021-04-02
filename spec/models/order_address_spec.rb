@@ -25,13 +25,12 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
        expect(@order_address.errors.full_messages).to include "Post number can't be blank"
       end
-        #上記（postal_code→もしかしたらpost_number 確認）
-      it 'post_numberが半角のハイフンを含んだ正しい形式でないと保存できないこと' do     #post_number, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+      it 'post_numberが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_address.post_number = '222'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Post number is invalid. Include hyphen(-)"
       end
-      it 'prefectureを選択していないと保存できないこと' do #:prefecture, numericality: {other_than: 0, message: "can't be blank"}
+      it 'prefectureを選択していないと保存できないこと' do 
       @order_address.prefecture_id = ''
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include "Prefecture can't be blank"
@@ -41,7 +40,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "City can't be blank", "City is invalid. Input full-width characters."
       end
-      it 'house_numberは空では保存できないこと' do #番地
+      it 'house_numberは空では保存できないこと' do 
         @order_address.house_number = ''
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "House number can't be blank"
@@ -51,7 +50,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Phone number can't be blank", "Phone number is invalid."
       end
-      it 'phone_numberは11以上だと保存できない' do#:phone_number,  format: {with: /\A\d{10}\z|\A\d{11}\z/ , message: "is invalid."}
+      it 'phone_numberは11以上だと保存できない' do
       @order_address.phone_number = '1234567891011'
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include "Phone number is invalid."
@@ -61,7 +60,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Token can't be blank"
       end
-      it 'ユーザーがひもづいいていなければ購入できない' do #未完成
+      it 'ユーザーがひもづいいていなければ購入できない' do 
         @order_address.user_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "User can't be blank"
