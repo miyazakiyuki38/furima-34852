@@ -4,7 +4,7 @@ FactoryBot.define do
     prefecture_id { 3 }
     city { '名古屋' }
     house_number { '大1-1' }
-    building_name { '' }
+    building_name { 'プチプルハイム元八事' }
     phone_number { '09082340124' }
     token { 'samle' }
   end
