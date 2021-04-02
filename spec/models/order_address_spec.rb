@@ -68,7 +68,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'アイテムが紐づいていなければ購入できない' do
         @order_address.item_id = nil
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include  
+        expect(@order_address.errors.full_messages).to include "Item can't be blank"
       end
 
       it '電話番号が半角数字のみでないと登録できないこと' do

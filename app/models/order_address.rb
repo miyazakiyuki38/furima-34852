@@ -6,7 +6,7 @@ class OrderAddress
   with_options presence: true do
     validates :user_id
     validates :item_id
-    validates :city, format: { with: /\A[ぁ-んァ-ン一-龥々]\z/, message: "is invalid. Input full-width characters."}
+    validates :city, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters."}
     validates :house_number
     validates :phone_number, format: {with: /\A\d{10}\z|\A\d{11}\z/ , message: "is invalid."}
     validates :post_number, format: {with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Include hyphen(-)"}
