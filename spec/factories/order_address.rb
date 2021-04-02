@@ -9,3 +9,5 @@ FactoryBot.define do
     token { 'samle' }
   end
 end
+
+# /items/19/edit
