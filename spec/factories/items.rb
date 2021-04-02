@@ -10,7 +10,7 @@ FactoryBot.define do
     order_date_id { 4}
     association :user 
     after(:build) do |item|
-      item.image.attach(io: File.open('public/images/test_image.png2.png'), filename: 'test_image.png2.png')
+      item.image.attach(io: File.open('public/images/test_image.jpeg'), filename: 'test_image.jpeg')
     end
   end
 end
