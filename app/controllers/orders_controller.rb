@@ -54,4 +54,3 @@ class OrdersController < ApplicationController
 end
 end
 
-# 6 /items/11/orders
