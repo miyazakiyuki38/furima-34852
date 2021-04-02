@@ -38,7 +38,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'cityは空では登録できないこと' do
         @order_address.city = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include "City can't be blank", "City is invalid. Input full-width characters."
+        expect(@order_address.errors.full_messages).to include "City can't be blank"
       end
       it 'house_numberは空では保存できないこと' do 
         @order_address.house_number = ''
@@ -48,7 +48,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberは空では購入できない' do
         @order_address.phone_number = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include "Phone number can't be blank", "Phone number is invalid."
+        expect(@order_address.errors.full_messages).to include "Phone number can't be blank"
       end
       it 'phone_numberは11以上だと保存できない' do
       @order_address.phone_number = '1234567891011'

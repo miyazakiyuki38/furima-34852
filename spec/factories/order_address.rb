@@ -10,4 +10,3 @@ FactoryBot.define do
   end
 end
 
-# /items/19/edit
