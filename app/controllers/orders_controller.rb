@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
     if @order_address.valid?
       pay_item
       @order_address.save
-      # ↑もしかしたら(エラーがでたら)@order
     redirect_to root_path
     else
       render 'index'
@@ -54,4 +53,3 @@ class OrdersController < ApplicationController
     end 
 end
 
-# /items/15/edit
